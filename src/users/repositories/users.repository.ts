@@ -11,6 +11,7 @@ export class UsersRepository{
     constructor(private readonly prisma: PrismaService){}
 
     async create(createUserDto: CreateUserDto): Promise<UserEntity> {
+        
        return this.prisma.user.create({
         data: createUserDto
        })
@@ -28,7 +29,7 @@ export class UsersRepository{
       })
       }
     
-    async  update(id: number, updateUserDto: UpdateUserDto): Promise<UserEntity> {
+    async update(id: number, updateUserDto: UpdateUserDto): Promise<UserEntity> {
         return this.prisma.user.update({
             where: {
                 id
@@ -37,7 +38,11 @@ export class UsersRepository{
         })
       }
     
-      remove(id: number) {
-        return `This action removes a #${id} user`;
+     async remove(id: number):Promise<UserEntity> {
+        return this.prisma.user.delete({
+            where: {
+                id
+            }
+        });
       }
 }

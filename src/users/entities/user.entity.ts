@@ -1,6 +1,6 @@
-import { User } from "@prisma/client";
+// import { User } from "@prisma/client";
 
-export class UserEntity implements User {
+export class UserEntity {
     id: number;
     email: string;
     name: string;
