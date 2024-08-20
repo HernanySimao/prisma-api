@@ -1,22 +1,22 @@
-version: '3'
+# version: '3'
 
 services:
   app:
     build: .
-    entrypoint: .docker/entrypoint.sh
     container_name: prismaapi-app
     ports:
       - "3000:3000"
+      - "5555:5555"
     volumes:
       - .:/home/node/app
+      - /home/node/app/node_modules
     depends_on:
       - db
 
   db:
-    build: .docker/postgres
+    image: postgres:latest
     container_name: prismaapi-db
     restart: always
-    tty: true
     ports:
       - "5432:5432"
     volumes:
