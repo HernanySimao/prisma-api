@@ -18,7 +18,11 @@ export class UsersRepository{
       }
     
      async findAll(): Promise<UserEntity[]> {
-        return await this.prisma.user.findMany()
+        return await this.prisma.user.findMany({
+            include: {
+                posts: true
+            }
+        })
       }
     
       findOne(id: number): Promise<UserEntity>{
